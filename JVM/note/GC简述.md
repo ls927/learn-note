@@ -95,5 +95,5 @@ GC roots 随着程序的运行会动态加入或删除一些对象。
 
 🚩 标记-整理（Mark-Compact）
 
-[^1]:详细的代码见 src/ReferenceCountingGC.java
-[^2]:src/FinalizeEscapeGC.java 演示了一个对象的一次自救过程
+[^1]:详细的代码见 [src/ReferenceCountingGC.java](src/ReferenceCountingGC.java)
+[^2]:[src/FinalizeEscapeGC.java](src/FinalizeEscapeGC.java) 演示了一个对象的一次自救过程
