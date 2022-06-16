@@ -79,11 +79,11 @@ GC roots 随着程序的运行会动态加入或删除一些对象。
 > 
 > 🚩 Patial GC
 > 
->   🔴 Minoor/Young GC: 针对新生代
-> 
->   🔴 Major/Old GC: 针对老年代
-> 
->   🔴 Mixed GC：混合回收
+>>🔴 Minoor/Young GC: 针对新生代
+>> 
+>>🔴 Major/Old GC: 针对老年代
+>> 
+>>🔴 Mixed GC：混合回收
 > 
 > 🚩 Full GC
 
