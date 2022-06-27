@@ -39,5 +39,46 @@ Java 集合，也称作容器。主要由两大接口派生：`Collection` 和 `
 🚩 `LinkedHashMap`: 继承自`HashMap`，在这之上加了双向链表，
 使得上面的结构可以保持键值对的插入顺序。同时通过对链表进行相应的操作，实现了访问顺序相关逻辑
 
+🚩 `HashTable`: 数组加链表实现，数组为主体，链表解决哈希冲突
+
+🚩 `TreeMap`: 红黑树
+
+#### 为什么要使用集合?
+优点：
+- 可存储多种类型
+- 可变长
+- 可保存具有映射关系的数据
+
+## Collection 子接口之 List
+#### ArrayList 和 Vector 的区别？
+`ArrayList` 和 `Vector` 都是基于 `Object[]` 存储，`ArrayList` 适用于频繁查找的工作，但是线程不安全。`Vector`比较古老，线程安全。在扩容时，`ArrayList` 是0.5倍，`Vector` 是 1 倍。
+
+
+#### ArrayList 与 LinkedList 的区别？
+1.是否保证线程安全： `ArrayList` 和 `LinkedList` 都是线程不安全的
+
+2.底层数据结构：`ArrayList` 底层使用的是`Object[]`；而 `LinkedList`  使用的双向链表数据结构
+
+3.插入和删除是否受元素位置影响：
+- `ArrayList` 会受元素的位置影响
+- `LinkedList` 头尾插入不受位置影响，其他都受
+
+4.是否支持随机访问：`LinkedList` 不支持，`ArrayList`支持。
+
+5.内存空间占用：`ArrayList` 的空间浪费主要体现在会预留一定的容量空间，而`LinkedList` 主要在于存储前后节点的引用。
+
+一般来说，第一选择是 `ArrayList`，`LinkedList`？它的作者都不用！
+
+> 补充内容：RandomAccess 接口
+> RandomAccess 接口中无定义内容，ArrayList 实现了它，只是为了标识实现该接口的支持随机访问，为了其他方法在调用 Collection 时，能够区别处理
+
+#### ArrayList 的扩容机制？
+
+
+#### 
+
+
+
+
 
 
