@@ -580,10 +580,63 @@ public class ArrayList<E> extends AbstractList<E>
     }
 ```
 
+值得注意的两类方法：
 
+- 数组拷贝
+  - `System.arraycopy()`: 
+    ```
+        // 我们发现 arraycopy 是一个 native 方法,接下来我们解释一下各个参数的具体意义
+    /**
+    *   复制数组
+    * @param src 源数组
+    * @param srcPos 源数组中的起始位置
+    * @param dest 目标数组
+    * @param destPos 目标数组中的起始位置
+    * @param length 要复制的数组元素的数量
+    */
+    public static native void arraycopy(Object src,  int  srcPos,
+                                        Object dest, int destPos,
+                                        int length);
 
+    ```
+  - `Arrays.copyOf()`
+    ```
+        public static int[] copyOf(int[] original, int newLength) {
+    	// 申请一个新的数组
+        int[] copy = new int[newLength];
+	// 调用System.arraycopy,将源数组中的数据进行拷贝,并返回新的数组
+        System.arraycopy(original, 0, copy, 0,
+                         Math.min(original.length, newLength));
+        return copy;
+    }
 
-#### 
+    ```
+- `ensureCapacity()`:
+   
+   ```
+       /**
+    如有必要，增加此 ArrayList 实例的容量，以确保它至少可以容纳由minimum capacity参数指定的元素数。
+     *
+     * @param   minCapacity   所需的最小容量
+     */
+    public void ensureCapacity(int minCapacity) {
+        int minExpand = (elementData != DEFAULTCAPACITY_EMPTY_ELEMENTDATA)
+            // any size if not default element table
+            ? 0
+            // larger than default for default empty table. It's already
+            // supposed to be at default size.
+            : DEFAULT_CAPACITY;
+
+        if (minCapacity > minExpand) {
+            ensureExplicitCapacity(minCapacity);
+        }
+    }
+
+   ```
+   所以当要插入大量元素时，先调用 `ensureCapacity()` 方法，直接先给`ArrayList`直接分配一个指定容量的数组，以减少增量重新分配的次数。
+   
+
+#### 解决
 
 
 
