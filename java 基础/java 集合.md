@@ -636,10 +636,27 @@ public class ArrayList<E> extends AbstractList<E>
    所以当要插入大量元素时，先调用 `ensureCapacity()` 方法，直接先给`ArrayList`直接分配一个指定容量的数组，以减少增量重新分配的次数。
    
 
-#### 解决
+## Collection 子接口之 Set
+#### Comparable 和 Comparator 的区别
+- `Comparable`: 来自`java.lang`包，它有个`compareTo(Object obj)`方法用来排序
+，被排序的对象需要实现该接口，覆盖`compareTo(Object obj)`方法
+- `Comparator`: 来自`java.util`包，有一个`compare(Object o1,Object o2)`方法用来排序，被排序的对象不需要实现它，只需要在排序方法时传入一个该接口的实例即可
 
+#### 无序性和不可重复的含义？
+- 无序：无序不是随机，是指存储的数据在底层数组的位置由数据的 hash 值决定
+- 不可重复：不可重复性是指添加的元素按照 equals()判断时 ，返回 false，需要同时重写 equals()方法和 HashCode()方法。
 
+#### 比较 HashSet、LinkedHashSet 和 TreeSet 三者的异同
+- 底层数据结构：
+  - `HashSet` ——> `HashMap`
+  - `LinkedHashSet`——> 链表和哈希表
+  - `TreeSet`——> 红黑树
+- 应用场景：
 
+`HashSet`用于不需要保证元素插入和取出顺序的场景，`LinkedHashSet` 用于保证元素的插入和取出顺序满足 FIFO 的场景，`TreeSet` 用于支持对元素自定义排序规则的场景。
+
+## Collection 子接口之 Queue
+#### Queue 与 Deque 的区别
 
 
 
