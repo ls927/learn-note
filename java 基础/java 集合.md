@@ -636,7 +636,46 @@ public class ArrayList<E> extends AbstractList<E>
    所以当要插入大量元素时，先调用 `ensureCapacity()` 方法，直接先给`ArrayList`直接分配一个指定容量的数组，以减少增量重新分配的次数。
    
 
-#### 解决
+## Collection 子接口之 Set
+#### HashSet,LinkedHashSet,TreeSet 三者异同
+
+ - `HashSet`--> `HashMap`
+ - `LinkedHashSet` --> 链表 + 哈希表 FIFO
+ - `TreeSet` --> 红黑树 元素有序
+
+#### 无序性和不可重复性指什么？
+- 无序性：无序性不代表随机性，无序性指存储的数据在底层数组中并非按照数组索引的顺序添加 ，而是根据数据的哈希值决定的。在遍历时，遍历的顺序是固定的，不随机，因为这是由元素的哈希值决定的。
+- 不可重复性：就是指添加的元素按照 equals()判断时 ，返回 false，需要同时重写 equals()方法和 HashCode()方法。
+
+#### Comparable 和 Comparator 的区别
+- Comparable 接口有一个 `compareTo(Object obj)` 用来排序，它需要被排序的对象实现它，并且根据需求覆盖该方法。
+- Comparator 接口有一个 `compare(Object obj1, Object obj2)` 方法，它不需要被排序的对象实现它，也可以用于不同类型对象和没有实现`Comparable`之间的比较，在排序时，创建一个 Comparator 作为排序方法的入参
+
+## Collection 子接口之 Queue
+#### Queue 与 Deque 的区别
+- Queue 是单端队列，只能一端插入元素，另一端删除元素 FIFO。Queue 扩展了 Collection 的接口，根据 因为容量问题而导致操作失败后处理方式的不同 可以分为两类方法: 一种在操作失败后会抛出异常，另一种则会返回特殊值。
+![image](https://user-images.githubusercontent.com/59677595/176635013-976d67f8-a167-44a1-bb66-e0226531370e.png)
+
+- Deque 是双端队列，在队列的两端均可以插入或删除元素。Deque 扩展了 Queue 的接口, 增加了在队首和队尾进行插入和删除的方法，同样根据失败后处理方式的不同分为两类：
+![image](https://user-images.githubusercontent.com/59677595/176635214-4a88aba2-b4b2-422e-af6b-5c73550cbde2.png)
+
+事实上，Deque 还有 `push()` 和 `pop()`等其他方法，可用于模拟栈。
+
+#### ArrayDeque 与 LinkedList 的区别
+两者都实现了 `Deque`,不同的是底层结构：
+- `ArrayDeque`: 数组加双指针，不支持存储 NULL数据，插入操作有时需要扩容，但性能均摊下来约为 O(1)
+- `LinkedList`: 链表加双指针，支持存储 NULL数据，插入时不需要扩容，但需要申请新的堆空间，均摊下来性能较低
+
+#### Talk about PriorityQueue
+优先队列，与`Queue`的区别是元素的出队顺序是与优先级决定的，优先级高的先出队。
+- 底层数据结构是 可变长数组实现的二叉堆，二叉堆通过堆元素的上浮与下沉，实现了 O(logn) 的时间复杂度插入和删除 堆顶元素
+- 默认是小顶堆，不支持存储 NULL 和 `non-comparable`的对象，但可以通过构造时，传入 `Comparator` 来实现元素的自动排序。
+- 非线程安全
+
+
+
+
+
 
 
 
