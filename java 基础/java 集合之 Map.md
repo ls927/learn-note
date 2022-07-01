@@ -188,7 +188,7 @@ void transfer(Entry[] newTable) {
         }
     }
 ```
-说明：...
+说明：[详细说明见此](https://coolshell.cn/articles/9606.html#Hash%E8%A1%A8%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84)
 
 - 多线程的 put 可能导致元素的丢失：多线程同时进行 put 操作，如果计算出来的索引位置是相同的，那就会找成前一个 key 倍后一个 key 覆盖，从而导致元素的丢失。这在 jdk7 和 jdk8中都存在
 - put 和 get 并发时，由于 put 执行后导致元素的个数超过 threshold 进行扩容，导致 键值对的移动，get 返回 null 值，在 jdk7 和 jdk8 都存在这个问题。
